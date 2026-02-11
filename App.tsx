@@ -3,8 +3,9 @@ import Navbar from './components/Layout/Navbar';
 import Button from './components/ui/Button';
 import BookingModal from './components/Features/BookingModal';
 import AiAssistant from './components/Features/AiAssistant';
+import WhatsAppButton from './components/ui/WhatsAppButton';
 import { SERVICES, TESTIMONIALS, DOCTORS } from './constants';
-import { Check, Star, MapPin, Phone, Mail, Clock, Instagram, Facebook } from 'lucide-react';
+import { Check, Star, MapPin, Phone, Mail, Clock, Instagram, Facebook, ArrowRight } from 'lucide-react';
 
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,41 +25,42 @@ const App: React.FC = () => {
             alt="Consultório Odontológico Moderno" 
             className="w-full h-full object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary-50 to-white/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-50 via-white/80 to-white/60"></div>
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary-100 text-primary-700 text-sm font-semibold mb-6 animate-fade-in-up">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary-100 border border-primary-200 text-primary-700 text-sm font-semibold mb-6 animate-fade-in-up">
               <Star size={16} className="mr-2 fill-primary-700" />
-              Clínica Premiada 2024
+              <span>Eleita Melhor Clínica da Região 2024</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight mb-6 leading-tight">
-              Transforme seu sorriso com a <span className="text-primary-600">tecnologia</span> que você merece.
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight mb-6 leading-tight animate-fade-in-up">
+              Transforme seu sorriso com a <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-500">tecnologia</span> que você merece.
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl">
+            <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl animate-fade-in-up delay-100">
               Na Luminous, unimos excelência técnica com atendimento humanizado. Descubra uma nova experiência em odontologia, sem dor e com resultados surpreendentes.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" onClick={openBooking}>
-                Agendar Avaliação
+            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-200">
+              <Button size="lg" onClick={openBooking} className="shadow-primary-500/30">
+                Agendar Avaliação Gratuita
+                <ArrowRight size={20} className="ml-2" />
               </Button>
               <Button variant="outline" size="lg" onClick={() => document.getElementById('services')?.scrollIntoView()}>
                 Conhecer Tratamentos
               </Button>
             </div>
             
-            <div className="mt-12 flex items-center gap-8 text-sm text-gray-500">
-              <div className="flex items-center gap-2">
-                <Check className="text-green-500" size={20} />
+            <div className="mt-12 flex flex-wrap items-center gap-6 md:gap-8 text-sm font-medium text-gray-600 animate-fade-in-up delay-300">
+              <div className="flex items-center gap-2 bg-white/50 backdrop-blur-sm px-3 py-1 rounded-full border border-gray-100">
+                <div className="bg-green-100 p-1 rounded-full"><Check className="text-green-600" size={14} /></div>
                 <span>Tecnologia 3D</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Check className="text-green-500" size={20} />
-                <span>Profissionais Especializados</span>
+              <div className="flex items-center gap-2 bg-white/50 backdrop-blur-sm px-3 py-1 rounded-full border border-gray-100">
+                <div className="bg-green-100 p-1 rounded-full"><Check className="text-green-600" size={14} /></div>
+                <span>Equipe Especializada</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Check className="text-green-500" size={20} />
+              <div className="flex items-center gap-2 bg-white/50 backdrop-blur-sm px-3 py-1 rounded-full border border-gray-100">
+                <div className="bg-green-100 p-1 rounded-full"><Check className="text-green-600" size={14} /></div>
                 <span>Ambiente Relaxante</span>
               </div>
             </div>
@@ -76,14 +78,14 @@ const App: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {SERVICES.map((service) => (
-              <div key={service.id} className="group p-8 rounded-2xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-xl transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div key={service.id} className="group p-8 rounded-2xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer" onClick={openBooking}>
+                <div className="w-14 h-14 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:bg-primary-600 group-hover:text-white">
                   <service.icon size={28} />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
                 <p className="text-gray-600 leading-relaxed mb-4">{service.description}</p>
-                <button className="text-primary-600 font-semibold flex items-center gap-1 hover:gap-2 transition-all text-sm" onClick={openBooking}>
-                  Saiba mais <Check size={16} />
+                <button className="text-primary-600 font-semibold flex items-center gap-1 hover:gap-2 transition-all text-sm group-hover:text-primary-700">
+                  Agendar agora <ArrowRight size={16} />
                 </button>
               </div>
             ))}
@@ -102,11 +104,11 @@ const App: React.FC = () => {
               </p>
               <div className="space-y-4 mb-8">
                 {['Mais de 5.000 sorrisos transformados', 'Equipamentos de última geração', 'Atendimento personalizado e humanizado'].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
+                  <div key={i} className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
                     <div className="w-6 h-6 rounded-full bg-secondary-100 text-secondary-600 flex items-center justify-center flex-shrink-0">
                       <Check size={14} />
                     </div>
-                    <span className="text-gray-700">{item}</span>
+                    <span className="text-gray-700 font-medium">{item}</span>
                   </div>
                 ))}
               </div>
@@ -138,11 +140,11 @@ const App: React.FC = () => {
           <h2 className="text-3xl font-bold text-center mb-16">O que nossos pacientes dizem</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {TESTIMONIALS.map((testimonial) => (
-              <div key={testimonial.id} className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:bg-white/20 transition-all">
+              <div key={testimonial.id} className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:bg-white/20 transition-all hover:-translate-y-1">
                 <div className="flex gap-1 mb-4 text-accent-500">
                   {[...Array(5)].map((_, i) => <Star key={i} size={18} fill="currentColor" />)}
                 </div>
-                <p className="text-lg italic mb-6 text-white/90">"{testimonial.content}"</p>
+                <p className="text-lg italic mb-6 text-white/90 leading-relaxed">"{testimonial.content}"</p>
                 <div className="flex items-center gap-4">
                   <img src={testimonial.image} alt={testimonial.name} className="w-12 h-12 rounded-full border-2 border-white/50" />
                   <div>
@@ -236,6 +238,7 @@ const App: React.FC = () => {
 
       {/* Floating Elements */}
       <AiAssistant />
+      <WhatsAppButton />
       <BookingModal isOpen={isModalOpen} onClose={closeBooking} />
     </div>
   );

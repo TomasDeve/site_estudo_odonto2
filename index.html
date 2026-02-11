@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Luminous Odontologia - Sorrisos Brilhantes</title>
-    <meta name="description" content="Clínica odontológica especializada em estética, implantes e ortodontia. Agende sua consulta." />
+    <title>Luminous Odontologia - Implantes e Estética</title>
+    <meta name="description" content="Clínica odontológica referência em estética, implantes e ortodontia invisível. Agende sua avaliação gratuita hoje mesmo." />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -28,6 +28,16 @@
             },
             fontFamily: {
               sans: ['Inter', 'system-ui', 'sans-serif'],
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+              'pulse-slow': 'pulse 3s infinite',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
             }
           }
         }
@@ -60,5 +70,6 @@
 </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
